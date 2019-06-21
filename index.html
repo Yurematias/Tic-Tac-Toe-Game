@@ -6,82 +6,48 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Jogo da Velha</title>
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-    <style>
-        header{
-            text-align: center;
-            color: white;
-            font-size: 19pt;
-            font-family: Roboto;
-        }
-        body{
-            background-color: rgb(20,20,80);
-            
-        }
-        table#tabuleiro{
-            margin: 10px auto auto auto; 
-        }
-        section#interface{
-            width: 450px;
-            background-color: white;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            text-align: center;
-            padding: 15px 15px 25px 15px;
-            font-size: 15pt;
-            border-radius: 10px;
-            margin: auto auto 10px auto;
-        }
-        table tr td{
-            border-radius: 8px;
-            width: 100px;
-            height: 100px;
-            margin: auto;
-            background-color: rgba(50,50,50,.35);
-        }
-        footer{
-            text-align: center;
-            color: white;
-            font-size: 14pt;
-            font-family: Roboto;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
     <header><h1>Jogo da Velha</h1></header>
     <section id="interface">
-        Vez do: <img vez="x" align="center" height="45px"src="img/x.png" alt="jogador da vez" id="vezJogador">
+        Vez do: <img id="imgvez" align="center" height="45px"src="img/x.png" alt="jogador da vez">
         
         <table border="0" id="tabuleiro">
+            <!-- linha 1 -->
             <tr>
-                <td>
-                    <img vez="" align="center" height="80px"src="img/x.png" alt="jogador da vez" id="lin1col1"> 
+                <td id="q1" onclick="jogada(this)">
+                    <img align="center" height="80px" src="" avaliable="1"> 
                 </td> 
-                <td>
-                    <img vez="" align="center" height="80px"src="img/x.png" alt="jogador da vez" id="lin1col2"> 
+                <td id="q2" onclick="jogada(this)">
+                    <img align="center" height="80px" src="" avaliable="1"> 
                 </td>
-                <td> 
-                    <img vez="" align="center" height="80px"src="img/o.png" alt="jogador da vez" id="lin1col3"> 
-                </td>
-            </tr>
-            <tr>
-                <td>    
-                    <img vez="" align="center" height="80px"src="img/o.png" alt="jogador da vez" id="lin2col1"> 
-                </td>
-                <td>   
-                    <img vez="" align="center" height="80px"src="img/o.png" alt="jogador da vez" id="lin2col2"> 
-                </td>
-                <td>  
-                    <img vez="" align="center" height="80px"src="img/x.png" alt="jogador da vez" id="lin2col3"> 
+                <td id="q3" onclick="jogada(this)"> 
+                    <img align="center" height="80px" src="" avaliable="1"> 
                 </td>
             </tr>
+            <!-- linha 2 -->
+            <tr> 
+                <td id="q4" onclick="jogada(this)">    
+                    <img align="center" height="80px" src=""> 
+                </td>
+                <td id="q5" onclick="jogada(this)">   
+                    <img align="center" height="80px" src=""> 
+                </td>
+                <td id="q6" onclick="jogada(this)">  
+                    <img align="center" height="80px" src=""> 
+                </td>
+            </tr>
+            <!-- linha 3 -->
             <tr>
-                <td>
-                    <img vez="" align="center" height="80px"src="img/x.png" alt="jogador da vez" id="lin2col1">
+                <td id="q7" onclick="jogada(this)">
+                    <img align="center" height="80px" src="">
                 </td>
-                <td>   
-                    <img vez="" align="center" height="80px"src="img/o.png" alt="jogador da vez" id="lin2col1">
+                <td id="q8" onclick="jogada(this)">   
+                    <img align="center" height="80px" src="">
                 </td>
-                <td>   
-                    <img vez="" align="center" height="80px"src="img/o.png" alt="jogador da vez" id="lin2col1">
+                <td id="q9" onclick="jogada(this)">   
+                    <img align="center" height="80px" src=""
                 </td>
             </tr>
         </table>

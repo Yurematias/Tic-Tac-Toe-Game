@@ -1,0 +1,55 @@
+header{
+    text-align: center;
+    color: white;
+    font-size: 19pt;
+    font-family: Roboto;
+}
+body{
+    background-color: rgb(20,20,80);
+    
+}
+
+input.btn{
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: white;
+    padding: 5px;
+    color: blue;
+    border-color: blue;
+    font-size: 15px;
+}
+
+input.btn:hover{
+    background-color: silver;
+    transform: scale(1.1);
+}
+
+div#result{
+    margin-top: 10px
+}
+table#tabuleiro{
+    margin: 10px auto auto auto; 
+}
+section#interface{
+    width: 450px;
+    background-color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    padding: 15px 15px 25px 15px;
+    font-size: 15pt;
+    border-radius: 10px;
+    margin: auto auto 10px auto;
+}
+table tr td{
+    border-radius: 8px;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    background-color: rgba(50,50,50,.35);
+}
+footer{
+    text-align: center;
+    color: white;
+    font-size: 14pt;
+    font-family: Roboto;
+}
