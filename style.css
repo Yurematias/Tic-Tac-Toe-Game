@@ -47,8 +47,11 @@ table tr td{
     margin: auto;
     background-color: rgba(50,50,50,.35);
 }
-footer{
+footer {
     text-align: center;
+}
+footer a{
+    text-decoration: none;
     color: white;
     font-size: 14pt;
     font-family: Roboto;

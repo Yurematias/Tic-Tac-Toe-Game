@@ -30,11 +30,26 @@ function winVerify()
             break
         }   
     }
-    if(matriz[0][0] == matriz[1][1] && matriz[1][1] == matriz[2][2])        // diagornal principal
+    if(matriz[0][0] == matriz[1][1] && matriz[1][1] == matriz[2][2])  // diagornal principal
         win = true  
     else if(matriz[0][2] == matriz[1][1] && matriz[1][1] == matriz[2][0])   // diagonal secundária  
         win = true 
     return win
+}
+
+// verifica se o jogo terminou, ou seja se não há mais casas jogáveis
+function finished()
+{
+    var cont = 0
+    for(let i = 0; i < 3; i++)
+        for(let j = 0; j < 3; j++)
+        {
+            if(matriz[i][j] == 'x' || matriz[i][j] == 'o')
+                cont++
+        }
+    if(cont == 9)    
+        return true
+    return false    
 }
 
 // realiza a jogada 
@@ -47,20 +62,17 @@ function jogada(elemento)
         {
             elemento.querySelector("img").src = (vez == 'x') ? "img/x.png" : "img/o.png" 
             matriz[i][j] = vez 
-
-            if(winVerify())
+            var ganhou = winVerify()
+            if(ganhou || finished())
             {
-                let vencedor = (vez == 'x') ? "O X venceu!!" : "O círculo venceu!!"
-                let resultado = document.createElement("div")
-                let botão = document.createElement("input")
-                botão.setAttribute("onclick","resetar()")
-                botão.setAttribute("type","button")
-                botão.setAttribute("value","resetar partida")
-                botão.setAttribute("class","btn")
-                resultado.setAttribute("id","result")
-                document.body.querySelector("section#interface").appendChild(resultado) 
-                document.body.querySelector("section#interface").appendChild(botão)
-                document.body.querySelector("div#result").innerHTML = vencedor
+                let txt
+                if(ganhou)
+                    txt = (vez == 'x') ? "O X venceu!!" : "O círculo venceu!!"
+                else
+                    txt = "O jogo empatou!!"
+                    
+                createTags()
+                document.body.querySelector("div#result").innerHTML = txt
             }  
             else
                 passarVez()
@@ -85,10 +97,32 @@ function prepara_ij(idElemento)
     }
 }
 
+// reseta o jogo
 function resetar()
 {
+    matriz = [
+        ['a','n','y'],
+        ['v','a','l'],
+        ['u','e',' ']
+    ]
     var a = document.getElementsByTagName("img")
+    for(let i = 1; i < a.length; i++)
+        a[i].src = ""
+    let botão = document.querySelector("input.btn")
+    let resultado = document.querySelector("div#result")
+    document.body.querySelector("section#interface").removeChild(resultado) 
+    document.body.querySelector("section#interface").removeChild(botão)
+}
 
-    for(let i = 1; i < 11; i++)
-        a.src = ""
+function createTags()
+{
+    let resultado = document.createElement("div")
+    let botão = document.createElement("input")
+    botão.setAttribute("onclick","resetar()")
+    botão.setAttribute("type","button")
+    botão.setAttribute("value","resetar partida")
+    botão.setAttribute("class","btn")
+    resultado.setAttribute("id","result")
+    document.body.querySelector("section#interface").appendChild(resultado) 
+    document.body.querySelector("section#interface").appendChild(botão)
 }
