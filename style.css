@@ -40,8 +40,14 @@ section#interface{
     border-radius: 10px;
     margin: auto auto 10px auto;
 }
+table{
+    border-color: white;
+    border: 0px;
+}
 table tr td{
-    border-radius: 8px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 10px;
     width: 100px;
     height: 100px;
     margin: auto;
