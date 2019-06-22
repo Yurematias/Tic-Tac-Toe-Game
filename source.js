@@ -1,11 +1,7 @@
 var vez = 'x'
 var i,j
 
-var matriz = [
-    ['a','n','y'],
-    ['v','a','l'],
-    ['u','e',' ']
-]
+var matriz = [[],[],[]]
 
 function passarVez()
 {
@@ -19,20 +15,20 @@ function winVerify()
     var win = false
     for(let i = 0, j = 2; i < 3; i++, j--)
     {
-        if(matriz[i][0] == matriz[i][1] && matriz[i][1] == matriz[i][2])  // linhas
+        if(matriz[i][0] == vez && matriz[i][1] == vez && matriz[i][2] == vez)  // linhas
         {
             win = true
             break
         }
-        else if(matriz[0][i] == matriz[1][i] && matriz[1][i] == matriz[2][i]) // colunas
+        else if(matriz[0][i] == vez && matriz[1][i] == vez && matriz[2][i] == vez) // colunas
         {
             win = true
             break
         }   
     }
-    if(matriz[0][0] == matriz[1][1] && matriz[1][1] == matriz[2][2])  // diagornal principal
+    if(matriz[0][0] == vez && matriz[1][1] == vez && matriz[2][2] == vez)  // diagornal principal
         win = true  
-    else if(matriz[0][2] == matriz[1][1] && matriz[1][1] == matriz[2][0])   // diagonal secundária  
+    else if(matriz[0][2] == vez && matriz[1][1] == vez && matriz[2][0] == vez)   // diagonal secundária  
         win = true 
     return win
 }
@@ -70,7 +66,7 @@ function jogada(elemento)
                     txt = (vez == 'x') ? "O X venceu!!" : "O círculo venceu!!"
                 else
                     txt = "O jogo empatou!!"
-                    
+
                 createTags()
                 document.body.querySelector("div#result").innerHTML = txt
             }  
@@ -100,11 +96,7 @@ function prepara_ij(idElemento)
 // reseta o jogo
 function resetar()
 {
-    matriz = [
-        ['a','n','y'],
-        ['v','a','l'],
-        ['u','e',' ']
-    ]
+    matriz = [[],[],[]]
     var a = document.getElementsByTagName("img")
     for(let i = 1; i < a.length; i++)
         a[i].src = ""
@@ -113,7 +105,7 @@ function resetar()
     document.body.querySelector("section#interface").removeChild(resultado) 
     document.body.querySelector("section#interface").removeChild(botão)
 }
-
+// cria o texto e o botao após o término do jogo
 function createTags()
 {
     let resultado = document.createElement("div")
