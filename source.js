@@ -1,14 +1,13 @@
-var vez = 'x'
+var vez = 'X'
 var i,j
 
 var matriz = [[],[],[]]
 
 function passarVez()
 {
-    vez = (vez == 'x') ? 'o' : 'x'
-    document.getElementById("imgvez").src = (vez == 'x') ? "img/x.png" : "img/o.png" 
+    vez = (vez == 'X') ? 'círculo' : 'X'
+    document.getElementById("imgvez").src = (vez == 'X') ? "img/x.png" : "img/o.png" 
 }
-
 // verifica se alguem ganhou 
 function winVerify()
 {
@@ -32,7 +31,6 @@ function winVerify()
         win = true 
     return win
 }
-
 // verifica se o jogo terminou, ou seja se não há mais casas jogáveis
 function finished()
 {
@@ -40,56 +38,33 @@ function finished()
     for(let i = 0; i < 3; i++)
         for(let j = 0; j < 3; j++)
         {
-            if(matriz[i][j] == 'x' || matriz[i][j] == 'o')
+            if(matriz[i][j] == 'X' || matriz[i][j] == 'círculo')
                 cont++
         }
     if(cont == 9)    
         return true
     return false    
 }
-
 // realiza a jogada 
 function jogada(elemento) 
 {
     if(!winVerify())
     {   
-        prepara_ij(elemento.id)
-        if(matriz[i][j] != 'x' && matriz[i][j] != 'o')
+        i = elemento.id.split('')[0]   
+        j = elemento.id.split('')[1]
+        if(matriz[i][j] == null)
         {
-            elemento.querySelector("img").src = (vez == 'x') ? "img/x.png" : "img/o.png" 
+            elemento.querySelector("img").src = (vez == 'X') ? "img/x.png" : "img/o.png" 
             matriz[i][j] = vez 
             var ganhou = winVerify()
             if(ganhou || finished())
             {
-                let txt
-                if(ganhou)
-                    txt = (vez == 'x') ? "O X venceu!!" : "O círculo venceu!!"
-                else
-                    txt = "O jogo empatou!!"
-
                 createTags()
-                document.body.querySelector("div#result").innerHTML = txt
+                document.body.querySelector("div#result").innerHTML = (ganhou) ? `O ${vez} venceu!!` : "O jogo empatou!!"
             }  
             else
                 passarVez()
         } 
-    }
-}
-
-// recebe o id do quadrado e modifica o i,j 
-function prepara_ij(idElemento)
-{
-    switch(idElemento)
-    {
-        case 'q1': i = 0, j = 0; break;
-        case 'q2': i = 0, j = 1; break;
-        case 'q3': i = 0, j = 2; break;
-        case 'q4': i = 1, j = 0; break;
-        case 'q5': i = 1, j = 1; break;
-        case 'q6': i = 1, j = 2; break;
-        case 'q7': i = 2, j = 0; break;
-        case 'q8': i = 2, j = 1; break;
-        case 'q9': i = 2, j = 2; 
     }
 }
 
@@ -98,7 +73,7 @@ function resetar()
 {
     matriz = [[],[],[]]
     var a = document.getElementsByTagName("img")
-    for(let i = 1; i < a.length; i++)
+    for(let i = 1; i < a.length; i++)   // começar do 1 pois o elemento 0 contém a imagem que diz a vez
         a[i].src = ""
     let botão = document.querySelector("input.btn")
     let resultado = document.querySelector("div#result")
