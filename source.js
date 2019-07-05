@@ -1,5 +1,4 @@
 var vez = 'X'
-
 var matriz = [[],[],[]]
 
 function passarVez()
@@ -67,7 +66,6 @@ function jogada(elemento)
         } 
     }
 }
-
 // reseta o jogo
 function resetar()
 {
