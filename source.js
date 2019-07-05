@@ -1,5 +1,4 @@
 var vez = 'X'
-var i,j
 
 var matriz = [[],[],[]]
 
@@ -11,8 +10,9 @@ function passarVez()
 // verifica se alguem ganhou 
 function winVerify()
 {
+    let i,j
     var win = false
-    for(let i = 0, j = 2; i < 3; i++, j--)
+    for(i = 0, j = 2; i < 3; i++, j--)
     {
         if(matriz[i][0] == vez && matriz[i][1] == vez && matriz[i][2] == vez)  // linhas
         {
@@ -34,29 +34,29 @@ function winVerify()
 // verifica se o jogo terminou, ou seja se não há mais casas jogáveis
 function finished()
 {
-    var cont = 0
+    let cont = 0, retorno
     for(let i = 0; i < 3; i++)
+    {
         for(let j = 0; j < 3; j++)
         {
             if(matriz[i][j] == 'X' || matriz[i][j] == 'círculo')
                 cont++
         }
-    if(cont == 9)    
-        return true
-    return false    
+    }    
+    retorno = (cont == 9) ? true : false    
+    return retorno
 }
 // realiza a jogada 
 function jogada(elemento) 
 {
     if(!winVerify())
     {   
-        i = elemento.id.split('')[0]   
-        j = elemento.id.split('')[1]
+        let i = elemento.id.split('')[0], j = elemento.id.split('')[1]
         if(matriz[i][j] == null)
         {
             elemento.querySelector("img").src = (vez == 'X') ? "img/x.png" : "img/o.png" 
             matriz[i][j] = vez 
-            var ganhou = winVerify()
+            let ganhou = winVerify()
             if(ganhou || finished())
             {
                 createTags()
@@ -72,7 +72,7 @@ function jogada(elemento)
 function resetar()
 {
     matriz = [[],[],[]]
-    var a = document.getElementsByTagName("img")
+    let a = document.getElementsByTagName("img")
     for(let i = 1; i < a.length; i++)   // começar do 1 pois o elemento 0 contém a imagem que diz a vez
         a[i].src = ""
     let botão = document.querySelector("input.btn")
