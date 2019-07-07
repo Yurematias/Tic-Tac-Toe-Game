@@ -1,79 +1,78 @@
-var vez = 'X'
-var matriz = [[],[],[]]
-
-function passarVez(){
-    vez = (vez == 'X') ? 'círculo' : 'X'
-    document.getElementById("imgvez").src = (vez == 'X') ? "img/x.png" : "img/o.png" 
+var turn = "X"
+var board = [[],[],[]]
+// muda o turno 
+function switchTurn(){
+    turn = (turn == "X") ? 'círculo' : "X"
+    document.getElementById("imgturn").src = (turn == "X") ? "img/x.png" : "img/o.png" 
 }
 // verifica se alguem ganhou 
-function winVerify(){
-    let i,j
+function verifyWin(){
     var win = false
-    for(i = 0, j = 2; i < 3; i++, j--){
-        if(matriz[i][0] == vez && matriz[i][1] == vez && matriz[i][2] == vez){
+    for(let i = 0; i < 3; i++){
+        if(board[i][0] == turn && board[i][1] == turn && board[i][2] == turn){
             win = true
             break
         }
-        else if(matriz[0][i] == vez && matriz[1][i] == vez && matriz[2][i] == vez){
+        else if(board[0][i] == turn && board[1][i] == turn && board[2][i] == turn){
             win = true
             break
         }   
     }
-    if(matriz[0][0] == vez && matriz[1][1] == vez && matriz[2][2] == vez)  // diagornal principal
+    if(board[0][0] == turn && board[1][1] == turn && board[2][2] == turn)  // diagornal principal
         win = true  
-    else if(matriz[0][2] == vez && matriz[1][1] == vez && matriz[2][0] == vez)   // diagonal secundária  
+    else if(board[0][2] == turn && board[1][1] == turn && board[2][0] == turn)   // diagonal secundária  
         win = true 
     return win
 }
 // verifica se o jogo terminou, ou seja se não há mais casas jogáveis
-function finished(){
-    let cont = 0, retorno
+function verifyTie(){
+    let count = 0, ended
     for(let i = 0; i < 3; i++){
         for(let j = 0; j < 3; j++){
-            if(matriz[i][j] == 'X' || matriz[i][j] == 'círculo')
-                cont++
+            if(board[i][j] == "X" || board[i][j] == 'círculo')
+                count++
         }
     }    
-    retorno = (cont == 9) ? true : false    
-    return retorno
+    ended = (count == 9) ? true : false    
+    return ended
 }
 // realiza a jogada 
-function jogada(elemento) {
-    if(!winVerify()){   
-        let i = elemento.id.split('')[0], j = elemento.id.split('')[1]
-        if(matriz[i][j] == null){
-            elemento.querySelector("img").src = (vez == 'X') ? "img/x.png" : "img/o.png" 
-            matriz[i][j] = vez 
-            let ganhou = winVerify()
-            if(ganhou || finished()){
+function move(element) {
+    if(!verifyWin()){   
+        let i = element.id.split('')[0], j = element.id.split('')[1]
+        if(board[i][j] == null){
+            element.querySelector("img").src = (turn == "X") ? "img/x.png" : "img/o.png" 
+            board[i][j] = turn 
+            let hasWon = verifyWin()
+            if(hasWon || verifyTie()){
                 createTags()
-                document.body.querySelector("div#result").innerHTML = (ganhou) ? `O ${vez} venceu!!` : "O jogo empatou!!"
+                document.body.querySelector("div#result").innerHTML = (hasWon) ? `O ${turn} venceu!!` : "O jogo empatou!!"
             }  
             else
-                passarVez()
+                switchTurn()
         } 
     }
 }
 // reseta o jogo
-function resetar(){
-    matriz = [[],[],[]]
-    let a = document.getElementsByTagName("img")
-    for(let i = 1; i < a.length; i++)   // começar do 1 pois o elemento 0 contém a imagem que diz a vez
-        a[i].src = ""
-    let botão = document.querySelector("input.btn")
-    let resultado = document.querySelector("div#result")
-    document.body.querySelector("section#interface").removeChild(resultado) 
-    document.body.querySelector("section#interface").removeChild(botão)
+function restart(){
+    board = [[],[],[]]
+    let imgs = document.getElementsByTagName("img")
+    for(let i = 1; i < imgs.length; i++)   // começar do 1 pois o elemento 0 countém a imagem que diz a vez
+        imgs[i].src = ""
+    let button = document.querySelector("input.btn")
+    let result = document.querySelector("div#result")
+    document.body.querySelector("section#interface").removeChild(result) 
+    document.body.querySelector("section#interface").removeChild(button)
 }
 // cria o texto e o botao após o término do jogo
 function createTags(){
-    let resultado = document.createElement("div")
-    let botão = document.createElement("input")
-    botão.setAttribute("onclick","resetar()")
-    botão.setAttribute("type","button")
-    botão.setAttribute("value","resetar partida")
-    botão.setAttribute("class","btn")
-    resultado.setAttribute("id","result")
-    document.body.querySelector("section#interface").appendChild(resultado) 
-    document.body.querySelector("section#interface").appendChild(botão)
+    let result = document.createElement("div")
+    let button = document.createElement("input")
+    button.setAttribute("onclick","restart()")
+    button.setAttribute("type","button")
+    button.setAttribute("value","resetar partida")
+    button.setAttribute("class","btn")
+    result.setAttribute("id","result")
+    document.body.querySelector("section#interface").appendChild(result) 
+    document.body.querySelector("section#interface").appendChild(button)
 }

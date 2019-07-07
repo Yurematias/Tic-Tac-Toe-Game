@@ -11,43 +11,43 @@
 <body>
     <header><h1>Jogo da Velha</h1></header>
     <section id="interface">
-        Vez de: <img id="imgvez" align="center" height="45px"src="img/x.png" alt="jogador da vez">
+        Vez de: <img id="imgturn" align="center" height="45px"src="img/x.png">
         
         <table border="1" id="tabuleiro">
             <!-- Deixo os src´s vazios para adiciona-los dinamicamente no JavaScript -->
             <!-- linha 1 -->
             <tr>
-                <td id="00" onclick="jogada(this)">
+                <td id="00" onclick="move(this)">
                     <img align="center" height="80px" src=""> 
                 </td> 
-                <td id="01" onclick="jogada(this)">
+                <td id="01" onclick="move(this)">
                     <img align="center" height="80px" src=""> 
                 </td>
-                <td id="02" onclick="jogada(this)"> 
+                <td id="02" onclick="move(this)"> 
                     <img align="center" height="80px" src=""> 
                 </td>
             </tr>
             <!-- linha 2 -->
             <tr> 
-                <td id="10" onclick="jogada(this)">    
+                <td id="10" onclick="move(this)">    
                     <img align="center" height="80px" src=""> 
                 </td>
-                <td id="11" onclick="jogada(this)">   
+                <td id="11" onclick="move(this)">   
                     <img align="center" height="80px" src=""> 
                 </td>
-                <td id="12" onclick="jogada(this)">  
+                <td id="12" onclick="move(this)">  
                     <img align="center" height="80px" src=""> 
                 </td>
             </tr>
             <!-- linha 3 -->
             <tr>
-                <td id="20" onclick="jogada(this)">
+                <td id="20" onclick="move(this)">
                     <img align="center" height="80px" src="">
                 </td>
-                <td id="21" onclick="jogada(this)">   
+                <td id="21" onclick="move(this)">   
                     <img align="center" height="80px" src="">
                 </td>
-                <td id="22" onclick="jogada(this)">   
+                <td id="22" onclick="move(this)">   
                     <img align="center" height="80px" src=""
                 </td>
             </tr>
