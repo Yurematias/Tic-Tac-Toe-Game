@@ -26,15 +26,14 @@ function verifyWin(){
 }
 // verifica se o jogo terminou, ou seja se não há mais casas jogáveis
 function verifyTie(){
-    let count = 0, ended
+    var count = 0
     for(let i = 0; i < 3; i++){
         for(let j = 0; j < 3; j++){
             if(board[i][j] == "X" || board[i][j] == 'círculo')
                 count++
         }
     }    
-    ended = (count == 9) ? true : false    
-    return ended
+    return (count == 9) ? true : false    
 }
 // realiza a jogada 
 function move(element) {
@@ -56,18 +55,18 @@ function move(element) {
 // reseta o jogo
 function restart(){
     board = [[],[],[]]
-    let imgs = document.getElementsByTagName("img")
+    var imgs = document.getElementsByTagName("img")
     for(let i = 1; i < imgs.length; i++)   // começar do 1 pois o elemento 0 countém a imagem que diz a vez
         imgs[i].src = ""
-    let button = document.querySelector("input.btn")
-    let result = document.querySelector("div#result")
+    var button = document.querySelector("input.btn")
+    var result = document.querySelector("div#result")
     document.body.querySelector("section#interface").removeChild(result) 
     document.body.querySelector("section#interface").removeChild(button)
 }
 // cria o texto e o botao após o término do jogo
 function createTags(){
-    let result = document.createElement("div")
-    let button = document.createElement("input")
+    var result = document.createElement("div")
+    var button = document.createElement("input")
     button.setAttribute("onclick","restart()")
     button.setAttribute("type","button")
     button.setAttribute("value","resetar partida")

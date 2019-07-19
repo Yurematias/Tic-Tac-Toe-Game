@@ -1,12 +1,11 @@
 header{
     text-align: center;
     color: white;
-    font-size: 19pt;
-    font-family: Roboto;
+    font-size: 15.5pt;
+    font-family: Orbitron;
 }
 body{
-    background-color: rgb(20,20,80);
-    
+    background-color: rgb(20,20,80);    
 }
 
 input.btn{
